@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/Meta.dir/main.cpp.o  -o Meta 
