@@ -1,0 +1,12 @@
+--Links
+	Operating Systems Design and Engineering
+		Design Patterns URL
+			http://www.vincehuston.org/dp/
+		Embedded Parallel Operating System URL
+			http://epos.lisha.ufsc.br/HomePage
+
+	Operating Systems Implementation and Techniques
+		The True Story of "Hello World"
+			https://moodle.ufsc.br/mod/page/view.php?id=1237187
+		C++ FAQ
+			https://isocpp.org/faq

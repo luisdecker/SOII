@@ -1,0 +1,23 @@
+﻿-Entre no link abaixo e se cadastre:
+	-https://epos.lisha.ufsc.br/tiki-register.php
+-Abra um terminal e rode o seguinte comando:
+	-sudo apt-get install g++ subversion qemu-system-i386 lib32stdc++6 libc6-i386 libc6-dev-i386 lib32z1
+-Após isso, tente executar o comando:
+	-sudo apt-get install bin86
+
+	-Caso o comando acima falhe, baixe o seguinte pacote:
+		-archive.ubuntu.com/ubuntu/pool/universe/l/linux86/bin86_0.16.17-3.1ubuntu3_amd64.deb
+	-Depois, rode o comando (não tenho certeza nessa parte):
+		-dpkg -i bin86_0.16.17-3.1ubuntu3_amd64.deb
+-Em seguida execute os comandos:
+	-wget --no-check-certificate -O ia32.tar.gz https://epos.lisha.ufsc.br/dl87 && \
+		tar -zxvf ia32.tar.gz && \
+		mkdir -p /usr/local/ia32/ && \
+		mv gcc-4.4.4 /usr/local/ia32/ && \
+		rm ia32.tar.gz
+-Por ultimo, baixe o EPOS em si usando o comando:
+	-svn co https://epos.lisha.ufsc.br/svn/epos2/trunk/ --username=SEU_USER_NAME
+
+-Agora você pode executar os seguintes comandos para testar se tudo deu certo:
+	-cd trunk/
+	-make APPLICATION=concurrent_philosophers_dinner run
