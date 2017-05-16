@@ -1,0 +1,39 @@
+!::Bluetooth IOT interface::
+!!::Cesar Smanioto Junior ()::
+!!::Gilney Nathanael Mathias ()::
+!!::Luis Gustavo Lorgus Decker (luisgustavo.decker@gmail.com)::
+
+!!Motivation 
+Nowadays, there are multiple IoT protocols that uses the Bluetooth as the phisical structure for comunication between the smart things and controllers, like a cellphone or a domotic central. Technologies like Bluetooth Low Energy (BLE) allows that this smart devices  
+
+!!Goals
+The objective of our project is to provide a linux IoT Wi-Fi gateway that can gracefully swap between the multiple data connections, in a transparent way to the users connected to bus acess point. [https://wiki.linuxfoundation.org/networking/bonding|Linux supports bonding multiple network interfaces], this feature can be used to accommodate multiple 4G connections under a unique virtual interface, thus promoting link stability if multiple carriers are used. 
+
+!!Methodology
+For the initial testing and standardization of the develpment plataform, a RaspeberryPi with two USB 4G dongles gonna be used as default hardware. A standard Linux kernel will be running in this hardware. The signal of the usb dongles will be selectively cut to emulate the veicle going out of the coverage zone of one carrier. The Linux network bonding system will be studied to verify if there is already a solution to the issue already built-in in the modern linux kernel. 
+
+!!Tasks
+#Study the bonding mechanism in the linux kernel.
+#Try to configure a bonding that serves for our purspouse, and if the bonding shows itself usefull, implement a instalation program from the bonding.
+#Else, if bonding won't show up as sufficient, implement a module that does the swap.
+#Proof-test the Gateway on the bus.
+
+!!Deliverables ~tc~ Um para cada tarefa ~/tc~
+#A report with the linux bonding mechanism, explaining its features and drawbacks.
+#A code for configuration of the bound, to be used as a configuration tool for other gateways, with a user manual and a report.
+#The code of the module, with a instalation manual and a report.
+#A report with a test made in the Electric Bus.
+
+!!Schedule
+{FANCYTABLE(head="Task|W1|W2|W3|W4|W5|W6|W7|W8|W9|W10" headaligns="left|center|center|center|center|center|center|center|center|center|center" colwidths="60%|5%|5%|5%|5%|5%|5%|5%|5%|5%|5%" colaligns="left|center|center|center|center|center|center|center|cente|cente|center")}
+Task1|x|D1| | | | | |  | |
+Task2| |  |x|x|x|x|x|D2| |
+Task3| |  |x|x|x|x|x|D3| |
+Task4| |  | | | | | |  |x|D4 {FANCYTABLE}
+
+!!Bibliography
+#http://dc.clicrbs.com.br/sc/estilo-de-vida/noticia/2016/12/onibus-eletrico-desenvolvido-pela-ufsc-comeca-a-circular-em-marco-em-florianopolis-8764117.html
+#https://www.unixmen.com/linux-basics-create-network-bonding-on-ubuntu-14-10/
+#https://wiki.linuxfoundation.org/networking/bonding
+
+

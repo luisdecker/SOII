@@ -1,5 +1,5 @@
 #/bin/sh
-# IA32 Tool-chain for EPOS
+# ARM Tool-chain for EPOS
 
 BINUTILS=2.20
 GCC=4.4.4
@@ -7,9 +7,9 @@ GMP=4.3.2
 MPFR=2.4.2
 NEWLIB=1.18.0
 
-TARGET=i686-elf
-PREFIX=/usr/local/ia32/gcc-$GCC
-PROG_PREFIX=ia32-
+TARGET=arm-elf
+PREFIX=/usr/local/arm/gcc-$GCC
+PROG_PREFIX=arm-
 
 BUILD=/tmp
 CONTRIB=/usr/local/contrib/linux/development
@@ -38,7 +38,11 @@ fi
 
 # Unpack
 cd $BUILD
-tar jxf $CONTRIB/binutils-$BINUTILS.tar.bz2 
+tar jxf $CONTRIB/binutils-$BINUTILS.tar.bz2
+
+#Binutils 2.20 has a bug on the GAS for ARM, so:
+patch binutils-$BINUTILS/gas/config/tc-arm.c $CONTRIB/tc-arm.c.patch
+
 tar jxf $CONTRIB/gcc-$GCC.tar.bz2
 cd gcc-$GCC
 tar jxf $CONTRIB/gmp-$GMP.tar.bz2
@@ -53,7 +57,7 @@ tar zxf $CONTRIB/newlib-$NEWLIB.tar.gz
 cd $BUILD
 mkdir $TARGET-binutils-build
 cd $TARGET-binutils-build
-../binutils-$BINUTILS/configure --target=$TARGET --prefix=$PREFIX --program-prefix=$PROG_PREFIX 
+../binutils-$BINUTILS/configure --target=$TARGET --prefix=$PREFIX --program-prefix=$PROG_PREFIX
 make
 make install
 ln -s $PREFIX/bin/$PROG_PREFIX""ar $PREFIX/bin/$TARGET-ar
@@ -86,11 +90,7 @@ make install
 cd $BUILD
 mkdir $TARGET-gcc-build
 cd $TARGET-gcc-build
-# This is what we wanted to do, but it produces a compiler that disagrees about
-# the definition of "size_t" with the rest of the world
 ../gcc-$GCC/configure --target=$TARGET --prefix=$PREFIX --program-prefix=$PROG_PREFIX --enable-languages=c,c++ --disable-nls --disable-multilib --disable-libssp --with-newlib --disable-shared --disable-threads --enable-target-optspace --with-gnu-as --with-gnu-ld --without-headers
-# so this was used
-#../gcc-$GCC/configure --target=$TARGET --prefix=$PREFIX --program-prefix=$PROG_PREFIX --enable-languages=c,c++ --disable-nls --disable-shared --with-gnu-as --with-gnu-ld --disable-threads --disable-libssp 
 make
 make install
 cd $BUILD
